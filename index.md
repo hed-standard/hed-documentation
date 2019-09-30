@@ -11,7 +11,7 @@ Next, check out [tutorials and documentations](eeglab)  on HEDTools to start tag
 Follow instruction on the [HED validator page](http://visual.cs.utsa.edu/hed/help) to prepare your event-HED tag spreadsheet and validate it with the HED validator.
 
 ## Tagging Strategy Guide
-Once you are familiar with the tools to create HED tags, check out our [strategy guide](/pdf/HEDTaggingStrategyGuide.pdf) for a quick guide on how to start tagging your data.
+Once you are familiar with the tools to create HED tags, check out our [strategy guide](pdf/HEDTaggingStrategyGuide.pdf) for a quick guide on how to start tagging your data.
 
 ***
 
