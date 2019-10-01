@@ -1,6 +1,4 @@
----
-title: Using HEDTools EEGLAB Plugin
----
+<h1>Using HEDTools EEGLAB Plugin</h1>
 
 Read the [user manual](pdf/HEDToolsUserManual.pdf) for detailed explanation on how to use EEGLAB HEDTools plugin.
 
