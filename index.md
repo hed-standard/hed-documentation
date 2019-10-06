@@ -1,17 +1,17 @@
-There are various tools supporting HED tagging. If you are EEG researchers and familiar with the Matlab toolbox EEGLAB, you can install HEDTools plugin for EEGLAB. Alternatively, you can also prepare a spreadsheet containing event codes and their associated HED tags and use HED validator to confirm your tagging.
+There are various tools supporting HED tagging. If you are EEG researchers and familiar with the Matlab toolbox EEGLAB, you can install HEDTools plug-in for EEGLAB. Alternatively, you can also prepare a spreadsheet containing event codes and their associated HED tags and use HED validator to confirm your tagging.
 
-## Using HEDTools plugin for EEGLAB
-There are two ways to install HEDTools EEGLAB plugin:
+## Using HEDTools plug-in for EEGLAB
+There are two ways to install the HEDTools EEGLAB plug-in:
 1. In EEGLAB, go to File > Manage EEGLAB extensions. Look for HEDTools and install it.
-2. Alternatively, you can download the [plugin zip file](https://github.com/hed-standard/hed-matlab/tree/master/EEGLABPlugin) and extract it into EEGLAB plugins folder. Restart EEGLAB.
+2. Alternatively, you can download the [plug-in zip file](https://github.com/hed-standard/hed-matlab/tree/master/EEGLABPlugin) and extract it into EEGLAB *plugins* folder. Restart EEGLAB.
 
-Next, check out [tutorials and documentations](eeglab)  on HEDTools to start tagging your EEG data.
+Next, check out the [User Manual](pdf/HEDToolsUserManual.pdf) to start tagging your EEG data.
 
 ## Using spreadsheet and HED validators
 Follow instruction on the [HED validator page](http://visual.cs.utsa.edu/hed/help) to prepare your event-HED tag spreadsheet and validate it with the HED validator.
 
 ## Tagging Strategy Guide
-Once you are familiar with the tools to create HED tags, check out our [strategy guide](pdf/HEDTaggingStrategyGuide.pdf) for a quick guide on how to start tagging your data.
+Once you are familiar with these ways to add HED tags to your data, check out our HED [Tagging Strategy Guide](pdf/HEDTaggingStrategyGuide.pdf) to get a quick start on tagging your data.
 
 ***
 
