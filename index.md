@@ -1,4 +1,4 @@
-There are various tools supporting HED tagging. If you are EEG an researcher and are familiar with the Matlab toolbox EEGLAB (sccn.ucsd.edu/eeglab), you can install the EEGLAB 'HEDTools' plug-in. Alternatively, you can also prepare a spreadsheet containing event codes and their associated HED tags and use the 'HED validator' to confirm your tagging.
+There are various tools supporting HED tagging. If you are EEG an researcher and are familiar with the Matlab toolbox [EEGLAB] (https://sccn.ucsd.edu/eeglab), you can install the EEGLAB 'HEDTools' plug-in. Alternatively, you can also prepare a spreadsheet containing event codes and their associated HED tags and use the 'HED validator' to confirm your tagging.
 
 ## Using HEDTools plug-in for EEGLAB
 There are two ways to install the HEDTools EEGLAB plug-in:
