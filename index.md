@@ -5,13 +5,13 @@ There are two ways to install the HEDTools EEGLAB plug-in:
 1. In EEGLAB, go to File > Manage EEGLAB extensions. Look for HEDTools and install it.
 2. Alternatively, you can download the [plug-in zip file](https://github.com/hed-standard/hed-matlab/tree/master/EEGLABPlugin) and extract it into EEGLAB *plugins* folder. Restart EEGLAB.
 
-Next, check out the [User Manual](pdf/HEDToolsUserManual.pdf) to start tagging your EEG data.
+Next, check out the [User Manual](docs/HEDToolsUserManual.pdf) to start tagging your EEG data.
 
 ## Using spreadsheet and HED validators
 Follow instruction on the [HED validator page](http://visual.cs.utsa.edu/hed/help) to prepare your event-HED tag spreadsheet and validate it with the HED validator.
 
 ## Tagging Strategy Guide
-Once you are familiar with these ways to add HED tags to your data, check out our HED [Tagging Strategy Guide](pdf/HEDTaggingStrategyGuide.pdf) to get a quick start on tagging your data.
+Once you are familiar with these ways to add HED tags to your data, check out our HED [Tagging Strategy Guide](docs/HEDTaggingStrategyGuide.pdf) to get a quick start on tagging your data.
 
 ***
 
