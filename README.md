@@ -1,0 +1,2 @@
+- index.md: landing page when goes to http://www.hedtags.org/hed-docs/
+- docs folder: contains all docx and pdf files, including the HEDTools User manual and the Tagging Strategy Guide
