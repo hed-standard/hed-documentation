@@ -1,7 +1,5 @@
-# Hierarchical Event Descriptor (HED)
+# Hierarchical Event Descriptor (HED) Documentations
 
-This repository contains the hedtags.org website and all HED documentation, guidelines, and publications..
+This repository contains all HED documentation, guidelines, and examples displayed under http://www.hedtags.org/hed-docs/.
 
-For the HED schema please visit: <https://github.com/hed-standard/hed-specification/wiki/HED-Schema>
-
-For more general information regarding HED please visit: <http://www.hedtags.org>
+Please visit branch [gh-pages](https://github.com/hed-standard/hed-docs/tree/gh-pages) for the contents.
