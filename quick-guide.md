@@ -21,11 +21,11 @@ This guide will focus on the EEGLAB plug-in *HEDTools* for event annotation, ext
 
 
 ## <a name="I">I. Event annotation & extraction with EEGLAB plug-in *HEDTools*</a>
-#### <a href="I.1">1. What is EEGLAB?</a>
+#### <a name="I.1">1. What is EEGLAB?</a>
 
 EEGLAB is one of the most widely used EEG analysis tool. It combines both graphical user interface and command-line, which is friendly for both beginner and those who prefer a more flexible, automated way of analyzing data. For more information about EEGLAB, check out its webpage [here](link). We will walk you through the process of installing EEGLAB and load a dataset to start tagging. However, if you are familiar with EEGLAB, you can skip to [section I.3](#I.3) to start learning how to tag your loaded data with HED.
 
-#### <a href="I.2">2. Installing EEGLAB and load dataset</a>
+#### <a name="I.2">2. Installing EEGLAB and load dataset</a>
 
 To get started, you should have EEGLAB installed. You can do this by downloading EEGLAB, then add the path of the unzipped folder to your MATLAB path. Then start EEGLAB by typing "eeglab" to the MATLAB command prompt window.
 
@@ -39,16 +39,16 @@ We will add details about those events using HED, and make anyone who receive th
 
 Now that we have loaded the data and generally know about the dataset event info, let's start adding HED tags to these event codes.
 
-#### <a href="I.3">3. Adding tags using CTAGGER</a>
+#### <a name="I.3">3. Adding tags using CTAGGER</a>
 
-#### <a href="I.4">4. Validating tagged dataset</a>
+#### <a name="I.4">4. Validating tagged dataset</a>
 
-#### <a href="I.5">5. Extracting HED-annotated events</a>
-
-
-
-## <a href="II">II. HED schema and the art of tagging</a>
+#### <a name="I.5">5. Extracting HED-annotated events</a>
 
 
 
-## <a href="III">III. Statistical analysis on HED-annotated study</a>
+## <a name="II">II. HED schema and the art of tagging</a>
+
+
+
+## <a name="III">III. Statistical analysis on HED-annotated study</a>
