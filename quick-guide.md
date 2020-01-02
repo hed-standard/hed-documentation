@@ -37,7 +37,7 @@ For a description of the dataset and the meaning of event codes, we check its de
 
 <img src="images/I15about_this_dataset.png" alt="I15about_this_dataset" style="zoom:100%;" />
 
-
+Our goal is to use HED tags to describe events, so that anyone who will reuse the dataset in the future won't need to read the description again.
 
 #### <a name="I.4">3. Adding tags using CTAGGER</a>
 
