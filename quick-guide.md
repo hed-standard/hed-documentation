@@ -32,20 +32,20 @@
 
 [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php) is a most widely used EEG software environment for analysis of human electrophsyioloigcal (and related) data. It combines both graphical and command-line user interfaces, making it friendly for both beginners who may who prefer a more flexible, automated way of analyzing data, and experts, who can easily extend the EEGLAB tool environment by making new EEGLAB compatible functions and/or publishing EEGLAB plug-in toolboxes that are then immediately available, through the EEGLAB graphic user interface (GUI) to anyone who downloads them.
 
-The plug-in *HEDTools* can be installed using one of the following ways:
+The plug-in *HEDTools* for EEGLAB can be installed using one of the following ways:
 
 1. From the EEGLAB Plug-in Manager: Launch EEGLAB and go to **File -> Manage EEGLAB extension**. The plug-in manager GUI will pop up. From this GUI look for and select the plug-in *HEDTools* from the main window, then click into the Install/Update button to install the plug-in.
 2. From the web: Download the zip file with the content of the plug-in *HEDTools* either from [GitHub](https://github.com/hed-standard/hed-matlab/blob/master/EEGLABPlugin/HEDTools2.5.0.zip) or from the EEGLAB [plug-ins summary page](https://sccn.ucsd.edu/eeglab/plugin_uploader/plugin_list_all.php). Decompress the zip file into the folder *../eeglab/plugins* and restart EEGLAB.
 
 #### <a name="I.2">2. Load dataset and start tagging</a>
 
-Once you have EEGLAB main window opened, load the dataset into the software. For this quick guide, we are using the EEGLAB tutorial dataset, which you can download [here](https://sccn.ucsd.edu/mediawiki/images/9/9c/Eeglab_data.set). Click on **File > Load existing dataset** and select the dataset. 
+For this quick guide, we are using the EEGLAB tutorial dataset, which you can download [here](https://sccn.ucsd.edu/mediawiki/images/9/9c/Eeglab_data.set). Once you have EEGLAB main window opened, load the dataset by selecting the **File > Load existing dataset** menu and select the dataset you just downloaded. 
 
-For a description of the dataset and the meaning of event codes, we check its description by selecting **Edit -> About this dataset**:
+We can read the description of the dataset and of the included event codes by selecting **Edit -> About this dataset**:
 
 <img src="images/I15about_this_dataset.png" alt="I15about_this_dataset" align="center" style="zoom:100%;" />
 
-Our goal is to use HED tags to describe events, so that anyone who will reuse the dataset in the future won't need to read the description again.
+Our goal is to use HED tags to describe events, so that anyone who will reuse the dataset in the future won't necessarily need to read the description to understand the event codes.
 
 #### <a name="I.4">3. Adding tags using CTAGGER</a>
 
@@ -53,7 +53,7 @@ From EEGLAB menu, select **Edit -> Add/Edit event HED tags** which will bring up
 
 <img src="images/image-20191218122111785.png" alt="image-20191218122111785" style="zoom:50%;" />
 
-We'll proceed with the default options which uses the latest version of the official HED schema. It also assumes that you are tagging the dataset for the first time and not re-using any previous tagging scheme. Lastly, you will use CTAGGER and event field selector panel for tagging. Hit **Ok**. 
+We'll proceed with the default options which use the latest version of the official HED schema. It's also assumed that you are tagging the dataset for the first time and not re-using any previous tagging scheme. Lastly, you will use CTAGGER and event field selector panel for tagging (more explanation below). Hit **Ok**. 
 
 A window will pop up to let you choose which event field to use for tagging:
 
@@ -61,29 +61,31 @@ A window will pop up to let you choose which event field to use for tagging:
 
 Fields listed in the select box are extracted from the EEG.event fields, ignoring fields "latency", "epoch", and "urevent". *Primary field* is the field used to specify what kind of event is occurring while the other fields are subfields used to specify conditions or subcategories within the event. In most cases with EEGLAB, "type" is the primary field which is also the first field we want to tag. Select "type" in the select box and click **Tag** which will open up CTAGGER:
 
-![image-20191218122404111](images/image-20191218122404111.png)
+![CTAGGER](images/CTAGGER.png)
 
-CTAGGER was built to facilitate the process of tagging. On the left side, we have the **Data Events** panel containining values of the selected event field and their associated tags. The right panel **Schema Tags** contains all available tags organized in the hierarchical structure as defined by the HED schema. The process of tagging is simply choosing tags from the schema to associate with an event value. 
+CTAGGER (Community Tagger) is a software written in Java to faciliate the process of adding tags to data events. Through its GUI, users can explore the HED schema, quickly look up and add tags/tag groups to the desired event codes, and use import/export features for reusage of tags.
 
-First we'll add a short label and a detailed description to the event codes using tag *Event/Label* and *Event/Description*. These tags are meant for human readability and will be ignored during machine processing. A restriction with HED tags is that tag value should not contain any comma, which is a common mistake with event description. Next, we want to generally categorize these events using tag *Event/Category*. "square" is a stimulus presentation event so we'll use tag *Event/Category/Experimental stimulus* and "rt" is subject's response so we use tag *Event/Category/Participant response*. 
+On the left side, we have the **Data Events** panel containining values of the selected event field and their associated tags. The right panel **Schema Tags** contains all available tags organized in the hierarchical structure as defined by the HED schema. The process of tagging is simply choosing tags from the schema to associate with an event value. The search bar in **Schema Tags** panel can be used to look up a tag and see its position in the HED schema. Users can also use the search bar in the **Data Events** panel to quickly look up and directly add tag to selected event value. 
+
+First we'll add a short label and a detailed description to the event codes using tag *Event/Label* and *Event/Description*. These tags are meant for human readability and will be ignored during machine processing. A restriction with HED tags is that tag value should not contain any comma, which is a common mistake with event description. Next, we want to generally categorize these events using tag *Event/Category*.  We'll use tag *Event/Category/Experimental stimulus* for the stimulus presentation events "square" and  *Event/Category/Participant response* for participant response events "rt". 
 
 ![alt text](images/event-label.gif)
 
 
 
-With those three information, the dataset can now be shared and researchers who re-use the dataset can quickly understand the meaning of the event codes. However, the power of HED is that you can finely detail the nature of the events so that analysis tools can automatically aggregrate events using tags with minimal human supervision later on. So let's keep tagging.
+With those three information, the dataset can now be shared and researchers who re-use the dataset can quickly understand the meaning of the event codes. However, HED also allow you to finely detail the nature of the events so that analysis tools can automatically aggregrate events using tags with minimal human supervision later on. So let's keep tagging!
 
-Let's start with partcipant responses events. We denote the type of action participant performed using *Action/* tags. In this case, it's *Action/Button press* since subject was asked to press a button when they see the target stimulus. We can go to further details in describing the body part affected by the action. In this case the subject was asked to use the right thumb to press the button. We'll first add a tag group to **rt**. A tag group contains a main tag and *Attribute/* tags that describe the main tag. Searching for keyword "thumb" in the HED schema shows *Participant/Effect/Body part/Arm/Hand/Finger/Thumb*. We add the tag to the group. Similarly, searching for "right" shows multiple results yet we care only about ones with *Attribute/* prefixes. *Attribute/Object side/Right* seems to be the right tag. Clicking on the tag brings us down to the location of the tag on the HED schema. Hovering over "Object side" shows the tag's description on tooltip: "Could be the left, right, or both sides of a person or a vehicle" which confirms our presumption. So we add the tag to the group and complete describing the participant response events.
+Let's start with partcipant responses events. We denote the type of action participant performed using *Action/* tags. In this case, it's *Action/Button press* since subject was asked to press a button when they see the target stimulus. We can go to further details in describing the body part affected by the action. In this case the subject was asked to use the right thumb to press the button. We'll first add a tag group to "rt". A tag group contains a main tag and *Attribute/* tags that describe the main tag. Searching for keyword "thumb" in shows *Participant/Effect/Body part/Arm/Hand/Finger/Thumb* so we add the tag to the group. Similarly, searching for "right" shows multiple results yet we care only about ones with *Attribute/* prefixes. *Attribute/Object side/Right* seems to be the right tag. Clicking on the tag brings us down to the location of the tag on the HED schema. Hovering over "Object side" shows the tag's description on tooltip: "Could be the left, right, or both sides of a person or a vehicle" which confirms our presumption. So we add the tag to the group and complete describing the participant response events.
 
 ![alt text](images/button-press.gif)
 
 
 
-We will next describing stimulus events. We'll describe how the sensory was presented to the participant using */Sensory presentation/* tag. In this case a visual stimulus was presented on a 2D screen so we use */Sensory presentation/Visual/Rendering type/Screen/2D*. We also want to describe the expected effect of the stimulus to the participant using *Participant/Effect/* tags. We want the subject to see the stimulus so we add tag *Participant/Effect/Visual*. Even better, we can use tag *Participant/Effect/Visual/Foveal* to denote that subject focused foveally on the stimulus presentation. 
+We will next describing stimulus events. We'll describe how the sensory was presented to the participant using *Sensory presentation/* tag. In this case a visual stimulus was presented on a 2D screen so we use *Sensory presentation/Visual/Rendering type/Screen/2D*. We also want to describe the expected effect of the stimulus to the participant using *Participant/* tags. Since subjects were asked to explicitly pay attention to the target square under the time pressure, we'll use tags *Participant/State/Attention/Covert* and *Participant/State/Under time pressure*. Here's what your CTAGGER should look like at this point:
 
 ![alt text](images/square-stimulus.png)
 
-We also want to describe the stimulus presentation itself. In this study, the stimulus is a filled circular disk appearing randomly in one of five green-outlined squares spaced evenly on a horizontal plane above the center fixation cross. For the tutorial sample dataset, we only include trials in which the disk appeared in the two left-most squares, annotated by event field "position". Thus to also include position information of the stimulus, we will switch to tag field "position". As we have finished tagging field "type", hit *Ok* on the current CTAGGER window. The field selection window becomes active again, and this time we choose "position" before hitting **Tag**. CTAGGER will appear again and this time with "position" event values "1" and "2", indicating stimulus appeared in the square at about 5.5 degree and 2.7 degree of horizontal visual angle respectively. 
+We also want to describe the stimulus presentation itself. In this study, the stimulus is a filled circular disk appearing randomly in one of five green-outlined squares spaced evenly on a horizontal plane above the center fixation cross. For the tutorial sample dataset, we only include trials in which the disk appeared in the two left-most squares, annotated by event field "position". Thus to also include position information of the stimulus, we will switch to tag field "position". As we have finished tagging field "type", hit **Ok** on the current CTAGGER window. The field selection window becomes active again, and this time we choose "position" before hitting **Tag**. CTAGGER will appear again and this time with "position" event values "1" and "2", indicating stimulus appeared in the square at about 5.5 degree and 2.7 degree of horizontal visual angle respectively. 
 
 ![](images/select-position.gif)
 
@@ -105,7 +107,17 @@ We'll add a second group to describe the circular disk. Similar to tagging the s
 
 ![](images/tag-circular-disk.png)
 
-You just finished tagging the dataset! *HEDTools* will generate the final HED string for each event by concatenating all tags associated with the event values of that event, seperated by commas, and put the string in a new field **usertags**. From now on you can use these tags to extract epochs for your analysis and  with other HED-annotated dataset you can do meta-analysis!
+Click **Ok** on CTAGGER window and **Ok** on the field selection window. A window will pop up asking if you want to save the **field map**. Field map is the mapping between all event codes and their associated HED tags that we just added. If saved, you can re-import it to another dataset with similar event codes. Click **Ok** when you're done. 
+
+![fieldmap](images/fieldmap.png)
+
+A last window will pop up asking what you would like to do to the newly tagged dataset and the old, untagged, dataset. You can choose to overwrite the old dataset with the tagged one or save new dataset as a separate file. Click **Ok** when you're done. 
+
+![new-set](images/newset.png)
+
+You just finished tagging! *HEDTools* generates the final HED string for each event by concatenating all tags associated with the event values of that event, seperated by commas, and put the string in a new field **usertags**. You can check this by opening up EEG.event in MATLAB variable window:
+
+![EEG.event](images/finish-1.png)
 
 #### <a name="I.4">4. Validating a HED-tagged dataset</a>
 
