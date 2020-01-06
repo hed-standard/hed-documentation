@@ -4,8 +4,11 @@
     margin-left: auto;
     margin-right: auto;
   }
-  p {
+  div {
     align: justify;
+  div {
+  text-align: justify;
+  text-justify: inter-word;
   }
 </style>
 
