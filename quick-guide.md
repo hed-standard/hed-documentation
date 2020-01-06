@@ -5,8 +5,6 @@
     margin-right: auto;
   }
   div {
-    align: justify;
-  div {
   text-align: justify;
   text-justify: inter-word;
   }
