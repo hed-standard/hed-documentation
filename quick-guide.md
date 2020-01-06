@@ -4,6 +4,9 @@
     margin-left: auto;
     margin-right: auto;
   }
+  p {
+    align: justify;
+  }
 </style>
 
 **Events Should Have HED Tags**:  Traditionally, software systems for event-related EEG data collection and analysis have used simple numeric codes (like 17, 129, etc.) whose meaning is hopefully saved with the data somewhere ("What does '*Event code 17* mean in this dataset??"). Else, event types are given brief but vague text labels ('*Target*'). With the recent rapid creation and increasing availability of new analysis methods for extracting information from collections of data, EEG data now have value long after their first publication. This becomes even more the case as, in near future, public *data, tool, and compute resources (DATCORs)* housed on available clouds or high-perrormance (super) computer networks are created and made available to a new wave of researchers trained in using biophysical, statistical, and machine learning methods to extract new information from the data. Archiving data in private or public DATCORs allows further and/or intensive data analyses of the original experiment data. It also allows new meta-analysis across studies having different experimental designs. All of this requires that the more exact natures of the *recorded experimental events* are saved and made accessible in an agreed format. 
