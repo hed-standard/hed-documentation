@@ -85,7 +85,7 @@ The illustration below shows how to add additional tags to event values, create 
 
 ![alt text](images/button-press.gif)
 
-???NEED TO REFER TO THE FIXATION CROSS -- AND ITS IMPERATIVE EFFECT: 'RETAIN FIXATION HERE'.???
+
 ???NEED TO DESCRIBE THAT THE FIVE (HOLLOW) BOXES REAMIN ON THE SCREEN DURING TASK BOUTS???
 
 Next, we describe the recorded stimulus presentation events. We capture how the sensory stimulus was presented to the participant using a *Sensory presentation/* tag. In this case visual stimuli were presented on a (2D) computer screen, so we use *Sensory presentation/Visual/Rendering type/Screen/2D*. We also want to describe the intended effect of the stimuli on the participant using *Participant/* tags. Since subjects were asked to explicitly pay attention to presentations of target squares, with time pressure to make a quick button press response, we use tags *Participant/State/Attention/Covert* and *Participant/State/Under time pressure*. At this point the *CTAGGER* window should look like this:
@@ -100,7 +100,7 @@ We also want to describe the nature of the presented stimulus itself. In this st
 
 
 
-The presented stimuli are circular disks appearing within green squares; so we use two groups to describe them separately. We first describe the bounding square. Click on the checkbox next to button *"Add new tag group"* to select ???both values???, and then click ???the button??? to add ???a group??? to both of them. Select the two newly added groups. We use tag */Item/2D shape/Rectangle/Square* and */Attribute/Visual/Color/Green* to describe the green square. ???WHAT ABOUT 'EMPTY'??? We can also denote the area of the square using tag */Attribute/Size/Area*. Clicking on the tag will pop up a window prompting for a value. We enter "1.6" as the value and select "cm2" as the unit, rendering a complete tag */Attribute/Size/Area/1.6 cm2*.
+To describe the fixation cross, we'll use the tag group (*Item/2D shape/Cross, Attribute/Visual/Fixation point, /Attribute/Location/Screen/Center*). The presented stimuli are circular disks appearing within green squares; so we use two groups to describe them separately. We first describe the bounding square. Click on the checkbox next to button *"Add new tag group"* to select ???both values???, and then click ???the button??? to add ???a group??? to both of them. Select the two newly added groups. We use tag */Item/2D shape/Rectangle/Square* and */Attribute/Visual/Color/Green* to describe the green square. ???WHAT ABOUT 'EMPTY'??? We can also denote the area of the square using tag */Attribute/Size/Area*. Clicking on the tag will pop up a window prompting for a value. We enter "1.6" as the value and select "cm2" as the unit, rendering a complete tag */Attribute/Size/Area/1.6 cm2*.
 
 ![tag-position-1](images/tag-position-1.gif)
 
