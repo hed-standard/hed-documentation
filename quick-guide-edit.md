@@ -88,33 +88,19 @@ The illustration below shows how to add additional tags to event values, create 
 
 Next, we describe the recorded stimulus presentation events. We capture how the sensory stimulus was presented to the participant using a *Sensory presentation/* tag. In this case visual stimuli were presented on a (2D) computer screen, so we use *Sensory presentation/Visual/Rendering type/Screen/2D*. We also want to describe the intended effect of the stimuli on the participant. To describe the imperative effect that the stimulus presentation has on the subjects (prompting them to make button press), we'll add a tag group (*Action/Button press, Attribute/Intended effect*). Furthermore, since subjects were asked to explicitly pay attention to presentations of target squares, with time pressure to make a quick button press response, we use tags *Participant/State/Attention/Covert* and *Participant/State/Under time pressure*. At this point the *CTAGGER* window should look like this:
 
-![alt text](images/square-stimulus.png)
+![alt text](images/type-tags.png)
 
-TODO: UPDATE GIF TO INCLUDE IMPERATIVE EFFECT TAGS
-
-We also want to describe the nature of the presented stimulus itself. In this study, the stimulus is a filled circular disk appearing randomly in one of five green-outlined squares spaced evenly on a horizontal plane above the center fixation cross. The tutorial sample dataset only includes event-related epochs in which the disk appeared in the two left-most squares, annotated by event field "*position*". To include screen position information in the stimulus description, we will use tag field *"position"*. As we have finished tagging the field *"type"*, press **Ok** in the current *CTAGGER* window. The field selection window becomes active again; this time we choose *"position"* before pressing **Tag**. The *CTAGGER* window will appear again, this time with *"position"* event values *"1"* or *"2"*, indicating that the stimulus appeared within squares centered, respectively, about 5.5 degrees and 2.7 degrees of horizontal visual angle from screen center.
+We also want to describe the nature of the presented stimulus itself. In this study, the stimulus is a black disc presented suddenly in any of five boxes spaced evenly on a horizontal plane above the center fixation cross. The tutorial sample dataset only includes event-related epochs in which the disk appeared in the two left-most squares, annotated by event field "*position*". To include screen position information in the stimulus description, we will use tag field *"position"*. As we have finished tagging the field *"type"*, press **Ok** in the current *CTAGGER* window. The field selection window becomes active again; this time we choose *"position"* before pressing **Tag**. The *CTAGGER* window will appear again, this time with *"position"* event values *"1"* or *"2"*, indicating that the stimulus appeared within squares centered, respectively, about -5.5 degrees and -2.7 degrees (screen's left field) of horizontal visual angle from screen center.
 
 ![](images/select-position.gif)
 
 
 
-To describe the screen-centered fixation cross, we'll use the tag group (*Item/2D shape/Cross, Attribute/Visual/Fixation point, /Attribute/Location/Screen/Center*). The presented stimuli are circular disks appearing within green squares; so we use two groups to describe them separately. We'll use tags *Item/2D shape/Rectangle/Square*, *Attribute/Size/Length/1.6 cm*, and *Attribute/Visual/Color/Green* to describe the 1.6-cm green square. We also want to include information about the positions of the presented stimuli on the screen. For events with position value "1", we add tags *Attribute/Location/Screen/Center displacement/Horizontal/2.7 degrees* and *Attribute/Location/Screen/Center displacement/Vertical/0.8 cm* to describe the square's horizontal visual angle and vertical displacement from screen center, respectively. For events with position value "2", we'll add *Attribute/Location/Screen/Center displacement/Horizontal/5.5 degrees* and *Attribute/Location/Screen/Center displacement/Vertical/0.8 cm*. We have now described the green square stimulus presentation events.
+To describe the screen-centered fixation cross, we'll use the tag group (*Item/2D shape/Cross, Attribute/Visual/Fixation point, /Attribute/Location/Screen/Center*). The black circular disc stimulus can be described using tags */Item/2D shape/Ellipse/Circle*, */Attribute/Visual/Color/Black*, and */Attribute/Size/Area/1.4 cm2*. We also want to include information about the disc's specific positions. For events with position value "1", we add tags *Attribute/Location/Screen/Center displacement/Horizontal/-5.5 degrees* and *Attribute/Location/Screen/Center displacement/Vertical/0.8 cm* to describe the disc's horizontal and vertical visual angle displacement from screen center, respectively. For events with position value "2", we'll add *Attribute/Location/Screen/Center displacement/Horizontal/-2.7 degrees* and *Attribute/Location/Screen/Center displacement/Vertical/0.8 cm*. We have described the stimulus presentation events.
 
 ![tag-position-1](images/tag-position-1.gif)
 
-TODO: UPDATE GIF TO INCLUDE FIXATION CROSS and REFLECT CHANGE IN ATTRIBUTES
 
-![tag-position-2](images/tag-position-2.gif)
-
-TODO: COMBINE THIS GIF WITH PREVIOUS ONE FOR A COMPLETE TAGGING OF TARGET SQUARE
-
-We add a second group to describe the presented circular disk. Similar to tagging the square, we add tags */Item/2D shape/Ellipse/Circle*, */Attribute/Visual/Color/Black*, and */Attribute/Size/Area/1.4 cm2* to describe the disk and  *Attribute/Location/Screen/Center displacement* tags to describe its position accordingly.
-
-![](images/tag-circular-disk.png)
-
-Lastly, we'll describe the other four non-target squares. They are similar to the target square except for the blue outline and their horizontal visual angle from screen center. We'll create a tag group with all their common tags and use CTAGGER's group duplication feature before adding the horizontal visual angle tag that differentiates them.
-
-TODO: [gif]
 
 Click **Ok** on CTAGGER window and **Ok** on the field selection window. A window will pop up asking if you want to save the **field map**. Field map is the mapping between all event codes and their associated HED tags that we just added. If saved, you can re-import it to another dataset with similar event codes (as shown above for the CTAGGER input window). Click **Ok** when you're done. 
 
