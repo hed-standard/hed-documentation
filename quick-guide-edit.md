@@ -29,8 +29,6 @@ The HED system is intended to continue to evolve (the HED developers are now pre
 4. [Validating tagged dataset](#I.4)
 5. [Extracting HED-annotated events](#I.5)
 
-[II. HED schema and the art of tagging](#II)
-
 
 
 ## <a name="I">I. Event annotation & extraction with EEGLAB plug-in *HEDTools*</a>
@@ -114,12 +112,24 @@ You just finished tagging! *HEDTools* generates the final HED string for each ev
 
 ![EEG.event](images/finish-1.png)
 
-#### <a name="I.4">4. Validating a HED-tagged dataset</a>
+#### <a name="I.4">4. Import tags from external field map file and Validating a HED-tagged dataset</a>
+
+Using CTAGGER gives you confidence that your tags are HED-compatible and the dataset is ready for use. However, sometimes you might want to reuse tags already produced by others. In EEGLAB, load the dataset you want to import the tags to and chose the menu **Edit > Add/Edit event HED tags**, which will bring up the tagging input window introduced above. Click on the browsing button next to the **Import tag file** input box and choose the field map (default name *fMap.mat*) file you want to reuse for your dataset. Then unselect the option to use CTAGGER if you do not wish to edit tags. After the tags are imported, you will have the option to resave the dataset and/or overwrite it in the working memory.
+
+![import-tags](images/import-tags.gif)
 
 
+
+A good step to do right after is to validate the imported tags. Go to **Edit > Validate event HED tags**. A window will pop up for you to review and edit validation options:
+
+![import-tags](images/validate-input.png)
+
+**HED schema** input field allows you to choose the schema to validate the tags against. By default it's the schema provided with the plugin. Validation result will be saved as a file in the specified **Output directory**, which defaults to the current MATLAB directory. Make sure to select the directory in which you have write permission. Lastly, the option to **Include warnings in log file** is toggled on by default, informing users about any unfulfilled tagging recommendations. Click **Ok** to continue.
+
+*HEDTools* will validate the tags in the current EEG set using the input options provided above. When done, you can look into the specified output directory for validation result file, whose name will be "validated_[dataset_name].txt". If there's no issue with the dataset, you will see only one line in the file, saying "No issues was found." Otherwise, for each issue there will be two line printed, the first one for the location at which the issue occurs and second line detailing the issue. Here are an example of validation log file with issues:
+
+![validation-issues](images/validation-issues.png)
 
 #### <a name="I.5">5. Extracting HED-tagged events and event-locked data epochs from an EEGLAB dataset</a>
-
-## <a name="II">II. The HED schema and the art of event annotation</a>
 
 
