@@ -19,7 +19,7 @@ The HED system is intended to continue to evolve (the HED developers are now pre
 
 **The HED System**:The *Hierarchical Event Descriptor (HED)* system provides a standardized way to describe more precisely the nature of recorded or later identified experimental events. Using HED-tagged datasets, researchers will no longer have to interpret stored, meaningless event codes or vague text labels. Detailed event descriptions, in a syntax that is both easily readbale to humans and computer programs, will be stored within the archived data itself. HED-informed analysis tools can then easily select and aggregate HED-tagged events of any description *across* any number of archived studies, with minimal human supervision. The HED system comprises a schema (syntax and agreed upon top-level tag hierarchy) and a software ecosystem supporting annotation, validation, and extraction of experimental events using HED tags. The [*HED schema*](http://www.hedtags.org/display_hed.html) specifies a collection of HED tags in use to annotate events, organized in a partially hierarchical structure. Software supporting the use of HED event tagging currently includes the EEGLAB plug-in library of [*HEDTools*](https://github.com/hed-standard/hed-matlab/tree/master/EEGLABPlugin), the GUI-based tagging program [*CTAGGER*](https://github.com/hed-standard/hed-java/blob/master/java/tagging/CTagger.jar) (now bundled with the *HEDTools* plug-in), and the online [*HED validator*](http://visual.cs.utsa.edu/hed/validation). The *HEDTools* plug-in for EEGLAB makes the tools callable from both the MATLAB commandline and from the EEGLAB main window menu.
 
-**Using HED and HEDTools**: This guide will focus on the EEGLAB plug-in *HEDTools* for experimental event annotation, validation, and identification using  HED event tags. After reading this guide, you will be familiar with the HED Schema and how to associate HED tags with events in existing data, either manually or using *CTAGGER*. You will also see how to use HED-annotated event descriptions in your analysis. Your understanding will not be limited to working in the EEGLAB environment; the HED system is distributed in both MATLAB and python versions, and can thus be used in nearly any data analysis tool environment.
+**Using HED and HEDTools**: This guide will focus on the EEGLAB plug-in *HEDTools* for experimental event annotation, validation, and identification using HED tags. After reading this guide, you will be familiar with the HED Schema and how to associate HED tags with events in existing data, either manually or using *CTAGGER*. We will use an example dataset to walk you through all steps of the guide and from it you will 
 
 [I. Event annotation & extraction with EEGLAB plug-in *HEDTools*](#I)
 
@@ -132,4 +132,74 @@ A good step to do right after is to validate the imported tags. Go to **Edit > V
 
 #### <a name="I.5">5. Extracting HED-tagged events and event-locked data epochs from an EEGLAB dataset</a>
 
+The EEGLAB *pop_epoch* function extracts data epochs that are time locked to specified event types. This function allows you to epoch on one of a specified list of event types as defined by the *EEG.event.type* field of the EEG structure. *HEDTools* provides a simple way for extracting data epochs from annotated datasets using a much richer set of conditions. To use HED epoching, you must have annotated the EEG dataset with HED tags stored in the *.usertags* and/or *.hedtags* fields under the *EEG.event field* of the dataset. If the dataset is not tagged, please refer to [section I.3](#I.3) on how to tag a dataset.
 
+Start by choosing the menu option **Tools > Extract epochs by tags**:
+
+<img src="images/extract-epoch-selection.png" alt="extract-epoch-selection" style="zoom:50%;" />
+
+
+
+This will bring up a window to specify the options for extracting data epochs:
+
+<img src="images/epoch-options.png" alt="extract-epoch-selection" style="zoom:50%;" />
+
+The *pop_epochhed* menu is almost identical to the EEGLAB *pop_epoch* menu with the exceptions of the first input field (**Time-locking HED tag(s)**) and the second input field (**Exclusive HED tag(s)**). Instead of passing in or selecting from a group of unique event types, the user passes in a comma separated list of HED tags. For each event all HED tags in this list must be found for a data epoch to be generated. Clicking the adjacent button (with the label …) will open a search tool to help you select HED tags retrieved from the dataset.
+
+<img src="images/epoch-tags.png" alt="extract-epoch-selection" style="zoom:50%;" />
+
+When you type something in the search bar, the dialog displays a list below containing possible matches. Pressing the "up" and "down" arrows on the keyboard while the cursor is in the search bar moves to the next or previous tag in the list. Pressing "Enter" selects the current tag in the list and adds the tag to the search bar. You can continue search and add tags after adding a comma after each tag. When done, click the **Ok** button to return to the main epoching menu. 
+
+Exclusive tags negate matches to other tags that are grouped with them. In order for a match to be returned the exclusive tag must be specified in the search string also. 
+
+Another thing to keep in mind is that the matching works differently when specifying non-exclusive tags that are attributes. If an attribute tag is specified in the search by itself then it needs to be present at the top-level of the event tags, the top-level and all tag groups, or in all tag groups if there are no top-level tags. 
+
+Here are a few examples to help clarify the way that the search works. 
+
+**Example 4.1**: Partial match found. 
+
+Event tags: a/b/c 
+
+Search tags: a/b 
+
+Result: True 
+
+**Example 4.2**: Match found but offset because exclusive tag isn’t specified in search. 
+
+Event tags: a/b, Attribute/Intended effect 
+
+Search tags: a/b 
+
+Result: False 
+
+**Example 4.3**: Match found but offset because exclusive tags need to be grouped with other tags. 
+
+Event tags: (a/b, Attribute/Intended effect), c/d 
+
+Search tags: c/d, Attribute/Intended effect 
+
+Result: False 
+
+**Example 4.4**: Match found but offset because attribute tags are found in group but not found at the toplevel. 
+
+Event tags: (a/b, Attribute/X, Attribute/Y), c/d 
+
+Search tags: Attribute/X, Attribute/Y 
+
+Result: False 
+
+**Example 4.5**: Match found because attribute tags are found in all groups and there are no top-level tags. 
+
+Event tags: (a/b, Attribute/X, Attribute/Y), (c/d, Attribute/Y) 
+
+Search tags: Attribute/Y 
+
+Result: True 
+
+**Example 4.6**: Match found because a whole group is matched even though it doesn’t match the other group 
+
+Event tags: (a/b, Attribute/X, Attribute/Y), (c/d, Attribute/X) 
+
+Search tags: a/b, Attribute/X, Attribute/Y 
+
+Result: True
