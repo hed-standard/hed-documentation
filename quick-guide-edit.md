@@ -150,56 +150,52 @@ The *pop_epochhed* menu is almost identical to the EEGLAB *pop_epoch* menu with 
 
 When you type something in the search bar, the dialog displays a list below containing possible matches. Pressing the "up" and "down" arrows on the keyboard while the cursor is in the search bar moves to the next or previous tag in the list. Pressing "Enter" selects the current tag in the list and adds the tag to the search bar. You can continue search and add tags after adding a comma after each tag. When done, click the **Ok** button to return to the main epoching menu. 
 
-Exclusive tags negate matches to other tags that are grouped with them. In order for a match to be returned the exclusive tag must be specified in the search string also. 
+Exclusive tags negate matches to other tags that are grouped with them. In order for a match to be returned the exclusive tag must be specified in the search string also. By default, there are three exclusive tags: *Attribute/Intended effect*, *Attribute/Offset*, and *Attribute/Participant indication*.
 
-Another thing to keep in mind is that the matching works differently when specifying non-exclusive tags that are attributes. If an attribute tag is specified in the search by itself then it needs to be present at the top-level of the event tags, the top-level and all tag groups, or in all tag groups if there are no top-level tags. 
+Another thing to keep in mind is that the matching works differently when specifying non-exclusive tags that are attributes (_Attribute/*_ tags). If an attribute tag is specified in the search by itself then it needs to be present at the top-level of the event tags, the top-level and all tag groups, or in all tag groups if there are no top-level tags. 
 
-Here are a few examples to help clarify the way that the search works. 
+Here are a few examples applied on part of the HED string produced by our previous tagging to help clarify the way that the search works. Here the event tags are printed in their separate lines to make it easier to read. We will leave the exclusive tags list as default, which include *Attribute/Intended effect*.
 
-**Example 4.1**: Partial match found. 
+Event tags:
 
-Event tags: a/b/c 
+"Event/Category/Experimental stimulus, 
 
-Search tags: a/b 
+Participant/State/Attention/Covert, 
 
-Result: True 
+Participant/State/Under time pressure, 
 
-**Example 4.2**: Match found but offset because exclusive tag isn’t specified in search. 
+Sensory presentation/Visual/Rendering type/Screen/2D, 
 
-Event tags: a/b, Attribute/Intended effect 
+(Action/Button press, Attribute/Intended effect),
 
-Search tags: a/b 
+(Attribute/Location/Screen/Center displacement/Horizontal/5.5 degrees, Attribute/Location/Screen/Center displacement/Vertical/1.8 degrees, Attribute/Size/Area/1.4 cm2, Attribute/Visual/Color/Black, Item/2D shape/Ellipse/Circle)"
 
-Result: False 
+**Example 1**: Partial match found. 
 
-**Example 4.3**: Match found but offset because exclusive tags need to be grouped with other tags. 
-
-Event tags: (a/b, Attribute/Intended effect), c/d 
-
-Search tags: c/d, Attribute/Intended effect 
-
-Result: False 
-
-**Example 4.4**: Match found but offset because attribute tags are found in group but not found at the toplevel. 
-
-Event tags: (a/b, Attribute/X, Attribute/Y), c/d 
-
-Search tags: Attribute/X, Attribute/Y 
-
-Result: False 
-
-**Example 4.5**: Match found because attribute tags are found in all groups and there are no top-level tags. 
-
-Event tags: (a/b, Attribute/X, Attribute/Y), (c/d, Attribute/Y) 
-
-Search tags: Attribute/Y 
+Search tags: Participant/State/Attention 
 
 Result: True 
 
-**Example 4.6**: Match found because a whole group is matched even though it doesn’t match the other group 
+**Example 2**: Match found but offset because exclusive tag isn’t specified in search. 
 
-Event tags: (a/b, Attribute/X, Attribute/Y), (c/d, Attribute/X) 
+Search tags: Action/Button press
 
-Search tags: a/b, Attribute/X, Attribute/Y 
+Result: False 
+
+**Example 3**: Match found but offset because exclusive tags need to be grouped with other tags. 
+
+Search tags: Participant/State/Under time pressure, Attribute/Intended effect 
+
+Result: False 
+
+**Example 4**: Match found but offset because attribute tags are found in group but not found at the top-level and the whole group doesn't match. 
+
+Search tags: Attribute/Visual/Color/Black, Attribute/Size/Area/1.4 cm2 
+
+Result: False 
+
+**Example 5**: Match found because a whole group is matched even though it doesn’t match the other group 
+
+Search tags: Action/Button press, Attribute/Intended effect
 
 Result: True

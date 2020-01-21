@@ -17,9 +17,9 @@ The HED system is intended to continue to evolve (the HED developers are now pre
 
 **HED Tagging**: Most people who have worked with EEG data are familiar with the practice of using brief (and thus, vague) and lab- or study-specific labels (*'Target'*) or arbitrary integers (*'event type 17'*) to record the nature of experimental events occurring during an EEG, MEG, or iEEG experiment. Using such a dataset for analysis thus involves first (hopefully) locating and reading the reported experiment description carefully to gain a more detailed sense of the meaning of the saved event codes or labels. However, the lack of detail in stored numeric event codes and event labels (to some extent, even in initial publications on the data) prevents researchers from flexibly combining events across studies based on the precise nature of the experimental events (questions such as: *'Are green stimuli processed differently than red, no matter their shape?'*, *'Is there any EEG biomarker of the participant having heard a natural sound (such as a bird call) rather than a synthetic sounded (such as a sine tone)?'*). Nor are researchers able to most efficiently evaluate which events to include in their analyses (e.g. to fulfill goals such as, *'Only the blue targets'.*). Meanwhile, the increasing momentum and success of various data sharing efforts now begin to allow EEG researchers to access an increasing number of datasets from studies involving different designs. This opens the possibility of applying advanced machine learning approaches to analyze EEG dynamics based on a larger and more diverse scale of data. Unfortunately, these possibilities are highly restricted by the constraints imposed by the current practice of experiment event annotation.
 
-**The HED System**:The *Hierarchical Event Descriptor (HED)* system provides a standardized way to describe more precisely the nature of recorded or later identified experimental events. Using HED-tagged datasets, researchers will no longer have to interpret stored, meaningless event codes or vague text labels. Detailed event descriptions, in a syntax that is both easily readbale to humans and computer programs, will be stored within the archived data itself. HED-informed analysis tools can then easily select and aggregate HED-tagged events of any description *across* any number of archived studies, with minimal human supervision. The HED system comprises a schema (syntax and agreed upon top-level tag hierarchy) and a software ecosystem supporting annotation, validation, and extraction of experimental events using HED tags. The [*HED schema*](http://www.hedtags.org/display_hed.html) specifies a collection of HED tags in use to annotate events, organized in a partially hierarchical structure. Software supporting the use of HED event tagging currently includes the EEGLAB plug-in library of [*HEDTools*](https://github.com/hed-standard/hed-matlab/tree/master/EEGLABPlugin), the GUI-based tagging program [*CTAGGER*](https://github.com/hed-standard/hed-java/blob/master/java/tagging/CTagger.jar) (now bundled with the *HEDTools* plug-in), and the online [*HED validator*](http://visual.cs.utsa.edu/hed/validation). The *HEDTools* plug-in for EEGLAB makes the tools callable from both the MATLAB commandline and from the EEGLAB main window menu.
+**The HED System**:The *Hierarchical Event Descriptor (HED)* system provides a standardized way to describe more precisely the nature of recorded or later identified experimental events. Using HED-tagged datasets, researchers will no longer have to interpret stored, meaningless event codes or vague text labels. Detailed event descriptions, in a syntax that is both easily readbale to humans and computer programs, will be stored within the archived data itself. HED-informed analysis tools can then easily select and aggregate HED-tagged events of any description *across* any number of archived studies, with minimal human supervision. The HED system comprises a schema (syntax and agreed upon top-level tag hierarchy) and a software ecosystem supporting annotation, validation, and extraction of experimental events using HED tags. The [*HED schema*](http://www.hedtags.org/display_hed.html) specifies a collection of HED tags in use to annotate events, organized in a partially hierarchical structure. Software supporting the use of HED event tagging currently includes the EEGLAB plug-in library of [*HEDTools*](https://github.com/hed-standard/hed-matlab/tree/master/EEGLABPlugin), the GUI-based tagging program [*CTAGGER*](https://github.com/hed-standard/hed-java/blob/master/java/tagging/CTagger.jar) (now bundled with the *HEDTools* plug-in), and the online [*HED validator*](http://visual.cs.utsa.edu/hed/validation). The *HEDTools* plug-in for EEGLAB makes the tools callable from both the MATLAB command-line and from the EEGLAB main window menu.
 
-**Using HED and HEDTools**: This guide will focus on the EEGLAB plug-in *HEDTools* for experimental event annotation, validation, and identification using  HED event tags. After reading this guide, you will be familiar with the HED Schema and how to associate HED tags with events in existing data, either manually or using *CTAGGER*. You will also see how to use HED-annotated event descriptions in your analysis. Your understanding will not be limited to working in the EEGLAB environment; the HED system is distributed in both MATLAB and python versions, and can thus be used in nearly any data analysis tool environment.
+**Using HED and HEDTools**: This guide will focus on the EEGLAB plug-in *HEDTools* for experimental event annotation, validation, and identification using HED tags. After reading this guide, you will get more familiar with the HED Schema and how to associate HED tags with events in existing data, either manually or using *CTAGGER*. 
 
 [I. Event annotation & extraction with EEGLAB plug-in *HEDTools*](#I)
 
@@ -63,7 +63,7 @@ A window will pop up to let you choose which field in the *EEG.event* structure 
 
 <img src="images/image-20191218122321698.png" alt="image-20191218122321698" style="zoom:50%;" />
 
-Fields listed in the select box are extracted from the *EEG.event* fields, ignoring other EEG structure fields (*.latency, .epoch, and .urevent). *Primary field* is the field used to specify the type of the event; the other fields are subfields used to specify conditions or subcategories within the event. In most EEGLAB dataset structures, *EEG.event.type* is the primary field and the first field we want to tag. Select "*type*" in the select box and click **Tag** which will open up *CTAGGER*:
+Fields listed in the select box are extracted from the *EEG.event* fields, ignoring other EEG structure fields (*.latency*, *.epoch*, and *.urevent*). *Primary field* is the field used to specify the type of the event; the other fields are subfields used to specify conditions or subcategories within the event. In most EEGLAB dataset structures, *EEG.event.type* is the primary field and the first field we want to tag. Select "*type*" in the select box and click **Tag** which will open up *CTAGGER*:
 
 ![CTAGGER](images/CTAGGER.png)
 
@@ -132,4 +132,70 @@ A good step to do right after is to validate the imported tags. Go to **Edit > V
 
 #### <a name="I.5">5. Extracting HED-tagged events and event-locked data epochs from an EEGLAB dataset</a>
 
+The EEGLAB *pop_epoch* function extracts data epochs that are time locked to specified event types. This function allows you to epoch on one of a specified list of event types as defined by the *EEG.event.type* field of the EEG structure. *HEDTools* provides a simple way for extracting data epochs from annotated datasets using a much richer set of conditions. To use HED epoching, you must have annotated the EEG dataset with HED tags stored in the *.usertags* and/or *.hedtags* fields under the *EEG.event field* of the dataset. If the dataset is not tagged, please refer to [section I.3](#I.3) on how to tag a dataset.
 
+Start by choosing the menu option **Tools > Extract epochs by tags**:
+
+<img src="images/extract-epoch-selection.png" alt="extract-epoch-selection" style="zoom:50%;" />
+
+
+
+This will bring up a window to specify the options for extracting data epochs:
+
+<img src="images/epoch-options.png" alt="extract-epoch-selection" style="zoom:50%;" />
+
+The *pop_epochhed* menu is almost identical to the EEGLAB *pop_epoch* menu with the exceptions of the first input field (**Time-locking HED tag(s)**) and the second input field (**Exclusive HED tag(s)**). Instead of passing in or selecting from a group of unique event types, the user passes in a comma separated list of HED tags. For each event all HED tags in this list must be found for a data epoch to be generated. Clicking the adjacent button (with the label …) will open a search tool to help you select HED tags retrieved from the dataset.
+
+<img src="images/epoch-tags.png" alt="extract-epoch-selection" style="zoom:50%;" />
+
+When you type something in the search bar, the dialog displays a list below containing possible matches. Pressing the "up" and "down" arrows on the keyboard while the cursor is in the search bar moves to the next or previous tag in the list. Pressing "Enter" selects the current tag in the list and adds the tag to the search bar. You can continue search and add tags after adding a comma after each tag. When done, click the **Ok** button to return to the main epoching menu. 
+
+Exclusive tags negate matches to other tags that are grouped with them. In order for a match to be returned the exclusive tag must be specified in the search string also. By default, there are three exclusive tags: *Attribute/Intended effect*, *Attribute/Offset*, and *Attribute/Participant indication*.
+
+Another thing to keep in mind is that the matching works differently when specifying non-exclusive tags that are attributes (_Attribute/*_ tags). If an attribute tag is specified in the search by itself then it needs to be present at the top-level of the event tags, the top-level and all tag groups, or in all tag groups if there are no top-level tags. 
+
+Here are a few examples applied on part of the HED string produced by our previous tagging to help clarify the way that the search works. Here the event tags are printed in their separate lines to make it easier to read. We will leave the exclusive tags list as default, which include *Attribute/Intended effect*.
+
+Event tags:
+
+"Event/Category/Experimental stimulus, 
+
+Participant/State/Attention/Covert, 
+
+Participant/State/Under time pressure, 
+
+Sensory presentation/Visual/Rendering type/Screen/2D, 
+
+(Action/Button press, Attribute/Intended effect),
+
+(Attribute/Location/Screen/Center displacement/Horizontal/5.5 degrees, Attribute/Location/Screen/Center displacement/Vertical/1.8 degrees, Attribute/Size/Area/1.4 cm2, Attribute/Visual/Color/Black, Item/2D shape/Ellipse/Circle)"
+
+**Example 1**: Partial match found. 
+
+Search tags: Participant/State/Attention 
+
+Result: True 
+
+**Example 2**: Match found but offset because exclusive tag isn’t specified in search. 
+
+Search tags: Action/Button press
+
+Result: False 
+
+**Example 3**: Match found but offset because exclusive tags need to be grouped with other tags. 
+
+Search tags: Participant/State/Under time pressure, Attribute/Intended effect 
+
+Result: False 
+
+**Example 4**: Match found but offset because attribute tags are found in group but not found at the top-level and the whole group doesn't match. 
+
+Search tags: Attribute/Visual/Color/Black, Attribute/Size/Area/1.4 cm2 
+
+Result: False 
+
+**Example 5**: Match found because a whole group is matched even though it doesn’t match the other group 
+
+Search tags: Action/Button press, Attribute/Intended effect
+
+Result: True
