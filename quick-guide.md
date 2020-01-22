@@ -51,7 +51,7 @@ Read a description of the dataset and of its included event codes by selecting *
 
 Our goal in using HED tags is to describe the experimental events that are recorded in the *EEG.event* data structure in sufficient detail that anyone using the dataset in the future will not need to find and read a separate, detailed description of the dataset or study to understand the exact natures of the recorded experimental events
 
-#### <a name="I.4">3. Adding tags using CTAGGER</a>
+#### <a name="I.3">3. Adding tags using CTAGGER</a>
 
 From EEGLAB menu, select **Edit -> Add/Edit event HED tags**, which will bring up a text entry window allowing you to specify options for tagging:
 
