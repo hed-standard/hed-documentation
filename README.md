@@ -1,6 +1,6 @@
-# hed-docs contains documentation for HED (Hierarchical Event Descriptors) projects
+# hed-docs contains documentation for HED projects
 
-HED is a community-driven controlled vocabulary for annotating events in experimental data. 
+HED (Hierarchical Event Descriptors) is a community-driven controlled vocabulary for annotating events in experimental data. 
 
 ### For a quick start see:
 - quick-guide.md
