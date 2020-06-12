@@ -1,24 +1,41 @@
-There are various tools supporting HED tagging. If you are EEG an researcher and are familiar with the Matlab toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab), you can install the EEGLAB 'HEDTools' plug-in. Alternatively, you can also prepare a spreadsheet containing event codes and their associated HED tags and use the 'HED validator' to confirm your tagging.
+HED (Hierarchical Event Descriptors) is a framework for annotating event data. This site hosts HED documentation
+and some examples of annotation.
+
+## How do I annotate my data in HED?
+
+A simple workflow for annotation is to create a spreadsheet containing events and their corresponding HED annotations.
+Researchers can then use an [online validator](http://visual.cs.utsa.edu/HED) to validate their annotations without installing
+other tools. The [CTAGGER](https://github.com/hed-standard/hed-matlab) tools in MATLAB provide a graphical user
+interface for doing annotation. HED validators
+are also available in [Python](https://github.com/hed-standard/hed-python) and 
+[JavaScript](https://github.com/hed-standard/hed-javascript).  
+
+Event annotation typically two forms: code-specific and event-specific. In **code-specific annotation**, researchers
+identify a small number of event classes or categories and annotate the categories with HED tags. Downstream tools
+then map the HED tags to event instances during analysis. In **event-specific annotation**, researchers tag
+individual event instances. One can combine these approaches, using code-specific annotation to describe common
+properties, for example that events with this code represent visual target events. An additional event-specific
+layer might be provided to label the location of the target in each individual event. Researchers can choose the
+layers of interest during downstream analysis. HED also supports data feature annotations.  
 
 ## Using HEDTools plug-in for EEGLAB
-There are two ways to install the HEDTools EEGLAB plug-in:
+HED annotation is integrated into [EEGLAB](https://sccn.ucsd.edu/eeglab), a MATLAB toolbox for processing EEG brain
+imaging data. There are two ways to install the HEDTools EEGLAB plug-in:
 1. In EEGLAB, go to File > Manage EEGLAB extensions. Look for HEDTools and install it.
 2. Alternatively, you can download the [plug-in zip file](https://github.com/hed-standard/hed-matlab/tree/master/EEGLABPlugin) and extract it into EEGLAB *plugins* folder. Restart EEGLAB.
 
 Check out the [Quick guide](quick-guide.md) to start tagging your EEG data.
 
 ## Using spreadsheet and HED validators
-Follow instruction on the [HED validator page](http://visual.cs.utsa.edu/hed/help) to prepare your event-HED tag spreadsheet and validate it with the HED validator.
+Follow the instructions on the [HED validator page](http://visual.cs.utsa.edu/hed/help) to prepare your event-HED
+tag spreadsheet and to validate it with the HED validator.
 
 ## Tagging Strategy Guide
-Once you are familiar with these ways to add HED tags to your data, check out our HED [Tagging Strategy Guide](docs/HEDTaggingStrategyGuide.pdf) to get a quick start on tagging your data.
+Once you are familiar HED basics, check out the
+[HED Tagging Strategy Guide](docs/HEDTaggingStrategyGuide.pdf) for some practical annotation strategies.
 
-***
+## Other links
 
-HED was originally developed under HeadIT project at Swartz Center for Computational Neuroscience (SCCN) of the University of California, San Diego and funded by U.S. National Institutes of Health grants R01-MH084819 (Makeig, Grethe PIs) and R01-NS047293 (Makeig PI). HED development is now supported by The Cognition and Neuroergonomics Collaborative Technology Alliance (CaN CTA) program of U.S Army Research Laboratory (ARL).
-<div width = "100%">
-<div width = "100%" align = "center" style="float:left">
-<a href="http://www.arl.army.mil/"  align="center"><img src="/images/ARL_logo.png" align="centeer" height="50px" ></a>
-</div>
-</div>
-<p/>
+[hedtags.org](http://hedtags.org) is the home page for HED tag users.  
+
+[hed-standard](https://github.com/hed-standard) is the HED community organization repository for HED development.
