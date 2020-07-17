@@ -4,7 +4,7 @@ and some examples of annotation.
 ## How do I annotate my data in HED?
 
 A simple workflow for annotation is to create a spreadsheet containing events and their corresponding HED annotations.
-Researchers can then use an [online validator](http://visual.cs.utsa.edu/HED) to validate their annotations without installing
+Researchers can then use an [online validator](http://visual.cs.utsa.edu/hed/validation) to validate their annotations without installing
 other tools. The [CTAGGER](https://github.com/hed-standard/hed-matlab) tools in MATLAB provide a graphical user
 interface for doing annotation. HED validators
 are also available in [Python](https://github.com/hed-standard/hed-python) and 
